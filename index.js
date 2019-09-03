@@ -22,5 +22,15 @@ server.post('/api/users', (req, res) => {
     })
 })
 
+server.get('/api/users', (req, res) => {
+    data.find()
+        .then(dat => {
+            res.status(200).json(dat)
+        })
+        .catch(error => {
+            res.status(500).json({ error: "The users information could not be retrieved." })
+        })
+})
+
 const port = 8000
 server.listen(port, () => console.log('api running'))
