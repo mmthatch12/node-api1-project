@@ -7,12 +7,12 @@ const server = express()
 
 server.use(express.json())
 
-server.post('/data', (req, res) => {
+server.post('/api/users', (req, res) => {
     const dataInfor = req.body
     console.log('data from body', dataInfor)
     data.insert(dataInfor)
         .then(dat => {
-            res.status(201).json(hub)
+            res.status(201).json(dat)
         })
     .catch(error => {
         res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
@@ -21,3 +21,6 @@ server.post('/data', (req, res) => {
         res.status(500).json({ error: "There was an error while saving the user to the database" })
     })
 })
+
+const port = 8000
+server.listen(port, () => console.log('api running'))
