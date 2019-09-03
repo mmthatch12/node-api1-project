@@ -32,5 +32,18 @@ server.get('/api/users', (req, res) => {
         })
 })
 
+server.get('/api/users/:id', (req, res) => {
+    data.findById()
+        .then(dat => {
+            res.status(200).json(dat)
+        })
+        .catch(error => {
+            res.status(404).json({ message: "The user with the specified ID does not exist." })
+        })
+        .catch(error => {
+            res.status(500).json({ error: "The user information could not be retrieved." })
+        })
+})
+
 const port = 8000
 server.listen(port, () => console.log('api running'))
